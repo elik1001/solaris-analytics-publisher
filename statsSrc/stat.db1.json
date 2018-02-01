@@ -1,0 +1,207 @@
+[
+    {
+       "$schema": "//:stat",
+       "description": "date_time",
+       "id": "//:class.app/company/servers//:stat.date_time",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "cpu usage sys",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-sys",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "cpu usage usr",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-usr",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "cpu total",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-total",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "memory total",
+       "id": "//:class.app/company/servers//:stat.memory-total",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "memory used",
+       "id": "//:class.app/company/servers//:stat.memory-used",
+       "stability": "stable",
+       "max-rate": "//:stat.memory-total",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "swap total",
+       "id": "//:class.app/company/servers//:stat.swap-total",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "swap used",
+       "id": "//:class.app/company/servers//:stat.swap-used",
+       "stability": "stable",
+       "max-rate": "//::stat.swap-total",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "net in megabytes",
+       "id": "//:class.app/company/servers//:stat.net.in-megabytes",
+       "stability": "stable",
+       "type": "counter",
+       "units": "kilobytes"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "network out megabytes",
+       "id": "//:class.app/company/servers//:stat.net.out-megabytes",
+       "stability": "stable",
+       "type": "counter",
+       "units": "kilobytes"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk read-megabytes (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read-megabytes-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write-megabytes (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write-megabytes-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk read-ops (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read-ops-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write-ops (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write-ops-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk read wait-time (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read_wait-time-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write wait-time (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write_wait-time-0B",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+
+    {
+       "$schema": "//:stat",
+       "description": "disk read-megabytes (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read-megabytes-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write-megabytes (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write-megabytes-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk read-ops (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read-ops-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write-ops (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write-ops-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk read wait-time (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read_wait-time-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "disk write wait-time (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write_wait-time-0C",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "db1 query-time",
+       "id": "//:class.app/company/servers//:stat.db1.qry-time",
+       "stability": "stable",
+       "max-rate": "150",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "db1 session-count",
+       "id": "//:class.app/company/servers//:stat.db1.ses-count",
+       "stability": "stable",
+       "max-rate": "3500",
+       "type": "counter",
+       "units": "calls"
+    },
+    {
+       "$schema": "//:stat",
+       "description": "db1 date generate",
+       "id": "//:class.app/company/servers//:stat.db1.date_gen",
+       "stability": "stable",
+       "type": "counter",
+       "units": "calls"
+    }
+]

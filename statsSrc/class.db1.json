@@ -1,0 +1,39 @@
+{
+    "$schema": "//:class",
+    "description": "Remote Server Stats",
+    "id": "app/company/servers",
+    "namespaces": [
+        {
+            "name-type": "string",
+            "resource-name": "server"
+        }
+    ],
+    "stability": "stable",
+    "stat-names": [
+        "//:stat.date_time",
+        "//:stat.cpu.usage-sys",
+        "//:stat.cpu.usage-usr",
+        "//:stat.cpu.usage-total",
+        "//:stat.memory-used",
+        "//:stat.memory-total",
+        "//:stat.swap-used",
+        "//:stat.swap-total",
+        "//:stat.net.in-megabytes",
+        "//:stat.net.out-megabytes",
+        "//:stat.disk.read-megabytes-0B",
+        "//:stat.disk.write-megabytes-0B",
+        "//:stat.disk.read-ops-0B",
+        "//:stat.disk.write-ops-0B",
+        "//:stat.disk.read_wait-time-0B",
+        "//:stat.disk.write_wait-time-0B",
+        "//:stat.disk.read-megabytes-0C",
+        "//:stat.disk.write-megabytes-0C",
+        "//:stat.disk.read-ops-0C",
+        "//:stat.disk.write-ops-0C",
+        "//:stat.disk.read_wait-time-0C",
+        "//:stat.disk.write_wait-time-0C",
+        "//:stat.db1.qry-time",
+        "//:stat.db1.ses-count",
+        "//:stat.db1.date_gen"
+    ]
+}

@@ -1,8 +1,64 @@
 # solaris-analytics-publisher
 Solaris Analytics Capture And Publisher
 
-This repository contains Solaris 11.4+(12) Analytics Capture and Publisher code.
-The sample code will help you getting quickly up and running, and possibly adding your own statistics as well.
+This repository contains Solaris 11.4+(12) Analytics Capture and Publisher sample code.
+The sample code will help you getting quickly up and running, and possibly add your own statistics.
+
+The sample application will extend the Solaris Stats Store Schema.
+The list of stats are below.
+<i>Note: </i> Two of the stats uses scripts to capture MySQL/DB related stats (below), feel free to add/remove your own stats.
+<pre>
+       "description": "date_time",
+       "id": "//:class.app/company/servers//:stat.date_time",
+       "description": "cpu usage sys",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-sys",
+       "description": "cpu usage usr",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-usr",
+       "description": "cpu total",
+       "id": "//:class.app/company/servers//:stat.cpu.usage-total",
+       "description": "memory total",
+       "id": "//:class.app/company/servers//:stat.memory-total",
+       "description": "memory used",
+       "id": "//:class.app/company/servers//:stat.memory-used",
+       "description": "swap total",
+       "id": "//:class.app/company/servers//:stat.swap-total",
+       "description": "swap used",
+       "id": "//:class.app/company/servers//:stat.swap-used",
+       "description": "net in megabytes",
+       "id": "//:class.app/company/servers//:stat.net.in-megabytes",
+       "description": "network out megabytes",
+       "id": "//:class.app/company/servers//:stat.net.out-megabytes",
+       "description": "disk read-megabytes (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read-megabytes-0B",
+       "description": "disk write-megabytes (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write-megabytes-0B",
+       "description": "disk read-ops (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read-ops-0B",
+       "description": "disk write-ops (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write-ops-0B",
+       "description": "disk read wait-time (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.read_wait-time-0B",
+       "description": "disk write wait-time (0B)",
+       "id": "//:class.app/company/servers//:stat.disk.write_wait-time-0B",
+       "description": "disk read-megabytes (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read-megabytes-0C",
+       "description": "disk write-megabytes (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write-megabytes-0C",
+       "description": "disk read-ops (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read-ops-0C",
+       "description": "disk write-ops (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write-ops-0C",
+       "description": "disk read wait-time (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.read_wait-time-0C",
+       "description": "disk write wait-time (0C)",
+       "id": "//:class.app/company/servers//:stat.disk.write_wait-time-0C",
+       "description": "db1 query-time",
+       "id": "//:class.app/company/servers//:stat.db1.qry-time",
+       "description": "db1 session-count",
+       "id": "//:class.app/company/servers//:stat.db1.ses-count",
+       "description": "db1 date generate",
+       "id": "//:class.app/company/servers//:stat.db1.date_gen",
+</pre>
 
 <h3>Getting Started</h3>
 
