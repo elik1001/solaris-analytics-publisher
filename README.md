@@ -99,7 +99,9 @@ The directory layout are explained below.
 </ol>
 
 <h4>Usage examples</h4>
-To use Analytics sample application.
+To use Analytics sample application, follow the steps below.
+
+<i>Note: </i>Additional details are avalble at <a href="http://www.devtech101.com/2016/08/31/capturing-solaris-11-4-12-analytics-sstore-part-1/">Capturing Your Own Solaris 11.4 (12) Analytics / Sstore</a>
 
 <ol>
 <li>Clone the git project in to /opt/sys_monitor with git clone. for example, git clone https://github.com/elik1001/solaris-analytics-publisher</li>
