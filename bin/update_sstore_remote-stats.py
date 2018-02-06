@@ -71,6 +71,9 @@ def updateSstore(link):
        # Add resources
        ss.resource_add(ssids)
 
+       # enable persistent recording of the collection
+       ss.enabled = True
+
        try:
            #print ssids
            #print ssidStats
