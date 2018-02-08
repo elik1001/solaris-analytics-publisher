@@ -108,6 +108,7 @@ from pprint import pprint,
 from urllib2 import Request, urlopen, URLError,
 from urlparse import urlparse
 
+
 Solaris 11.4+(12)
 import rad.auth as rada
 import rad.client as radcli
