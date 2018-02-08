@@ -138,7 +138,7 @@ To use Analytics sample application, follow the steps below.
 <li>Modify <i>/opt/sys_monitor/bin/capture_from_local-s11_4.py</i>, replace <i>disks1/sd1 and disk2/sd4</i> with your sd device - you can find your device with iostat -xc (left col).</li>
 <li>Modify <i>/opt/sys_monitor/bin/capture_from_local-s11_4.py</i>, replace <i>net1/interface1 and disk2/interface2</i> with your network device - you can find your device with ipadm.</li>
 <li>Modify <i>/opt/sys_monitor/bin/pull_from_remote-s11_4.py</i>, replace <i>user</i> and <i>password</i> with your remote host user and password</li>
-<li>Modiyf/add you host to /opt/sys_monitor/conf/s12-links.txt, this file contains a list of hosts to fetch data from, the data will then be published to the local cnetral Analytics Stats Store.</li>
+<li>Modify/add you host to /opt/sys_monitor/conf/s12-links.txt, this file contains a list of hosts to fetch data from, the data will then be published to the local central Analytics Stats Store.</li>
 <li>Add/replace <i>/opt/sys_monitor/conf/chk_db1_apps-ses.sh and /opt/sys_monitor/conf/test_db1_apps.sh</i> with your MySQL DB password (or if you allow localhost without a password, just remove -p option)</li>
 <li><i>Optional: </i>Add any (MySQL) required variables to /opt/sys_monitor/conf/set_env</li>
 </ol>
@@ -179,8 +179,8 @@ To use the application, you will need to import the SMF services, by running the
 
 To use the application, you will need to import the SMF services, by running the below..
 <ol>
-<li><b>Used for local capture:</b><br>svccfg import /opt/sys_monitor/services/capture_service.xml</li>
-<li><b>Exposes the local analytics with the HTTP interface: </b><br>svccfg import /opt/sys_monitor/services/getresults_service.xml</li>
+<li><b>Used for local capture:</b><br>svccfg import /opt/sys_monitor/services/s11_4-capture_service.xml</li>
+<li><b>Exposes the local analytics with the HTTP interface: </b><br>svccfg import /opt/sys_monitor/services/s11_4-pull_from_remote.xml</li>
 <li><b>Used for pulling the remote host analytics: </b><br>svccfg import /opt/sys_monitor/services/populate_service.xml</li>
 </ol>
 
