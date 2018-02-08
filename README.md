@@ -106,7 +106,7 @@ from libsstore import SStore,
 from multiprocessing import Process,
 from pprint import pprint,
 from urllib2 import Request, urlopen, URLError,
-from urlparse import urlparse,
+from urlparse import urlparse
 
 Solaris 11.4+(12)
 import rad.auth as rada
@@ -172,17 +172,17 @@ svcadm restart svc:/system/sstore:default
 To use the application, you will need to import the SMF services, by running the below..
 <ol>
 <li><b>Used for local capture: </b><br>svccfg import /opt/sys_monitor/services/s11_4-capture_service.xml</li>
-<li><b>Used to pull from remote: </b><br>svccfg import /opt/sys_monitor/services/s11_4-pull_from_remote.xml</li>
+<li><b>Used for pulling the remote host analytics: </b><br>svccfg import /opt/sys_monitor/services/s11_4-pull_from_remote.xml</li>
 </ol>
-<b>Note: </b>You can run both Solaris 11.4 and pre Solaris 11.4 services simultaneously (this is only needed if you have s11.4+ and pre s11.4 hosts).
+<b>Note: </b>You can run both <i>Solaris 11.4</i> and <i>pre Solaris 11.4</i> services simultaneously (this is only needed if you have s11.4+ and pre s11.4 hosts).
 
 <b>Pre Solaris 11.4+(12)</b>
 
 To use the application, you will need to import the SMF services, by running the below..
 <ol>
 <li><b>Used for local capture:</b><br>svccfg import /opt/sys_monitor/services/capture_service.xml</li>
-<li><b>Exposes the local data with HTTP: </b><br>svccfg import /opt/sys_monitor/services/getresults_service.xml</li>
-<li><b>Used to pull from remote: </b><br>svccfg import /opt/sys_monitor/services/populate_service.xml</li>
+<li><b>Exposes the local analytics with the HTTP interface: </b><br>svccfg import /opt/sys_monitor/services/getresults_service.xml</li>
+<li><b>Used for pulling the remote host analytics: </b><br>svccfg import /opt/sys_monitor/services/populate_service.xml</li>
 </ol>
 
 Make sure the services are up and running, by running the below.
