@@ -1,0 +1,1 @@
+http://host.domain.com:19099/
