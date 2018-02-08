@@ -60,6 +60,30 @@ The list of stats are below.
        "id": "//:class.app/company/servers//:stat.db1.date_gen",
 </pre>
 
+<h4>Versions</h4>
+
+<b>Version 0.2</b>
+
+<b>Note: </b>This update significantly enhances Analytics collection on Solaris 11.4+(12).
+
+<ul>
+<li>Removed the need for an extra Python HTTP server to gather remote analytics (this is still needed for pre s11.4 clients).</li>
+<li>Removed the need for a local SQLite Database (this is still needed for pre s11.4 clients).</li>
+<li>Updated all REST API calls to use Solars Remote Administration Demon(RAD) Authentication.</li>
+</ul>
+
+The new version only needs one service/demon to run on the remote node.<br>
+All data captured is stored in the local Stats Store.<br>
+The remote Stats Store central server queries / pulls from all the remote client.
+
+The install adds two new SMF services and two new Python applications.
+
+To use the new version (preferred for Solaris 11.4+/12) follow the instructions below in the install section.
+
+<b>Version 0.1</b>
+
+Initial Release
+
 <h3>Getting Started</h3>
 
 <h4>Installation</h4>
@@ -82,7 +106,12 @@ from libsstore import SStore,
 from multiprocessing import Process,
 from pprint import pprint,
 from urllib2 import Request, urlopen, URLError,
-from urlparse import urlparse,
+from urlparse import urlparse
+# Solaris 11.4+(12)
+import rad.auth as rada
+import rad.client as radcli
+import rad.connect as radcon
+import rad.bindings.com.oracle.solaris.rad.sstore_1 as sstore
 </pre>
 <i>Note: </i>You can install libraries by running <i>pip install [library]</i>
 
@@ -103,16 +132,30 @@ To use Analytics sample application, follow the steps below.
 
 <i>Note: </i>Additional details are avalble at <a href="http://www.devtech101.com/2016/08/31/capturing-solaris-11-4-12-analytics-sstore-part-1/">Capturing Your Own Solaris 11.4 (12) Analytics / Sstore</a>
 
+<b>Solaris 11.4+(12)</b>
 <ol>
-<li>Clone the git project in to /opt/sys_monitor with git clone. for example, git clone https://github.com/elik1001/solaris-analytics-publisher</li>
-<li>On the target host, modify <i>/opt/sys_monitor/capture.py</i>, replace <i>db1_host</i> if listening for remote traffic (default is localhost).</li>
-<li>Modify <i>/opt/sys_monitor/capture.py</i>, replace <i>disks1/sd1 and disk2/sd4</i> with your sd device - you can find your device with iostat -xc (left col).</li>
-<li>Modify <i>/opt/sys_monitor/capture.py</i>, replace <i>net1/interface1 and disk2/interface2</i> with your network device - you can find your device with ipadm.</li>
-<li><i>Optional: </i>Modify <i>/opt/sys_monitor/get_results.py</i>, replace <i>host</i> with your hostname (or localhost)</li>
+<li>Clone the git repository in to /opt/sys_monitor with git clone. for example, git clone https://github.com/elik1001/solaris-analytics-publisher</li>
+<li>Modify <i>/opt/sys_monitor/bin/capture_from_local-s11_4.py</i>, replace <i>disks1/sd1 and disk2/sd4</i> with your sd device - you can find your device with iostat -xc (left col).</li>
+<li>Modify <i>/opt/sys_monitor/bin/capture_from_local-s11_4.py</i>, replace <i>net1/interface1 and disk2/interface2</i> with your network device - you can find your device with ipadm.</li>
+<li>Modify <i>/opt/sys_monitor/bin/pull_from_remote-s11_4.py</i>, replace <i>user</i> and <i>password</i> with your remote host user and password</li>
+<li>Modiyf/add you host to /opt/sys_monitor/conf/s12-links.txt, this file contains a list of hosts to fetch data from, the data will then be published to the local cnetral Analytics Stats Store.</li>
+<li>Add/replace <i>/opt/sys_monitor/conf/chk_db1_apps-ses.sh and /opt/sys_monitor/conf/test_db1_apps.sh</i> with your MySQL DB password (or if you allow localhost without a password, just remove -p option)</li>
+<li><i>Optional: </i>Add any (MySQL) required variables to /opt/sys_monitor/conf/set_env</li>
+</ol>
+
+<b>Pre Solaris 11.4+(12)</b>
+<ol>
+<li>Clone the git repository in to /opt/sys_monitor with git clone. for example, git clone https://github.com/elik1001/solaris-analytics-publisher</li>
+<li>On the target host, modify <i>/opt/sys_monitor/bin/capture.py</i>, replace <i>db1_host</i> if listening for remote traffic (default is localhost).</li>
+<li>Modify <i>/opt/sys_monitor/bin/capture.py</i>, replace <i>disks1/sd1 and disk2/sd4</i> with your sd device - you can find your device with iostat -xc (left col).</li>
+<li>Modify <i>/opt/sys_monitor/bin/capture.py</i>, replace <i>net1/interface1 and disk2/interface2</i> with your network device - you can find your device with ipadm.</li>
+<li><i>Optional: </i>Modify <i>/opt/sys_monitor/bin/get_results.py</i>, replace <i>host</i> with your hostname (or localhost)</li>
 <li>Modiyf/add you host to /opt/sys_monitor/conf/links.txt, this file contains the list of hosts to fetch results which will then be published to  Analytics(Sstore).</li>
 <li>Add/replace <i>/opt/sys_monitor/conf/chk_db1_apps-ses.sh and /opt/sys_monitor/conf/test_db1_apps.sh</i> with your MySQL DB password (or if you allow localhost, just remove it)</li>
 <li><i>Optional: </i>Add any MySQL required variables to /opt/sys_monitor/conf/set_env</li>
 </ol>
+
+<b>Solaris 11.4+(12)</b>
 
 First Copy the Stats Store (sstore) custom json files to the stats directory.
 <pre>
@@ -123,15 +166,33 @@ Now, restart the Stats Store service for the new stats to be available.
 svcadm restart svc:/system/sstore:default
 </pre>
 
+<b>Solaris 11.4+(12)</b>
+
 To use the application, you will need to import the SMF services, by running the below..
 <ol>
-<li>svccfg import /opt/sys_monitor/services/capture_service.xml</li>
-<li>svccfg import /opt/sys_monitor/services/getresults_service.xml</li>
-<li>svccfg import /opt/sys_monitor/services/populate_service.xml</li>
+<li><b>Used for local capture: </b><br>svccfg import /opt/sys_monitor/services/s11_4-capture_service.xml</li>
+<li><b>Used for pulling the remote host analytics: </b><br>svccfg import /opt/sys_monitor/services/s11_4-pull_from_remote.xml</li>
+</ol>
+<b>Note: </b>You can run both <i>Solaris 11.4</i> and <i>pre Solaris 11.4</i> services simultaneously (this is only needed if you have s11.4+ and pre s11.4 hosts).
+
+<b>Pre Solaris 11.4+(12)</b>
+
+To use the application, you will need to import the SMF services, by running the below..
+<ol>
+<li><b>Used for local capture:</b><br>svccfg import /opt/sys_monitor/services/capture_service.xml</li>
+<li><b>Exposes the local analytics with the HTTP interface: </b><br>svccfg import /opt/sys_monitor/services/getresults_service.xml</li>
+<li><b>Used for pulling the remote host analytics: </b><br>svccfg import /opt/sys_monitor/services/populate_service.xml</li>
 </ol>
 
 Make sure the services are up and running, by running the below.
 <pre>
+S11.4+
+svcs svc:/application/monitor/s11_4-local_stats_capture:default svc:/application/monitor/s11_4-remote_stats_capture:default
+STATE          STIME    FMRI
+online         17:24:45 svc:/application/monitor/s11_4-local_stats_capture:default
+online         17:24:45 svc:/application/monitor/s11_4-remote_stats_capture:default
+
+Pre S11.4
 svcs svc:/application/stats_capture:default svc:/application/stats_result:default svc:/application/monitor/update_stats:default
 STATE          STIME    FMRI
 online         12:58:35 svc:/application/stats_capture:default
@@ -139,7 +200,7 @@ online         12:58:35 svc:/application/stats_result:default
 online         12:59:33 svc:/application/monitor/update_stats:default
 </pre>
 
-You are now ready to add stats to the Solaris GUI dashboard.
+You are now ready to setup stats on the Solaris BUI/GUI dashboard.
 Login to https://localhost:6787/
 
 <ul>

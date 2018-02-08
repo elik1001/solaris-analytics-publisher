@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+<service_bundle type='manifest' name='export'>
+  <service name='application/monitor/s11_4-local_stats_capture' type='service' version='0'>
+    <create_default_instance enabled='true'/>
+    <single_instance/>
+    <dependency name='multi-user-server' grouping='require_any' restart_on='error' type='service'>
+      <service_fmri value='svc:/milestone/multi-user-server:default'/>
+    </dependency>
+    <exec_method name='start' type='method' exec='/opt/sys_monitor/startup/s11_4-capture_startup.sh start' timeout_seconds='10'>
+    </exec_method>
+    <exec_method name='stop' type='method' exec=':kill' timeout_seconds='10'>
+    </exec_method>
+    <property_group name='general' type='framework'>
+    </property_group>
+    <stability value='Stable'/>
+    <template>
+      <common_name>
+        <loctext xml:lang='C'>S11_4/S12 Stats Capture</loctext>
+      </common_name>
+    </template>
+  </service>
+</service_bundle>
